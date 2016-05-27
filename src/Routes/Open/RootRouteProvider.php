@@ -1,6 +1,6 @@
 <?php
 
-namespace DaGopherboy\SilexJWTRestPhp\Routes\Open;
+namespace App\Routes\Open;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;

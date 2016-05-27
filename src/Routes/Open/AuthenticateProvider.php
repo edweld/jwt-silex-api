@@ -1,6 +1,6 @@
 <?php
 
-namespace DaGopherboy\SilexJWTRestPhp\Routes\Open;
+namespace App\Routes\Open;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,14 +10,21 @@ class AuthenticateProvider
 {
     public function authenticate(Application $app, Request $request)
     {
+	//application_id
         $username = $request->get('username');
+        //application_auth_key
         $password = $request->get('password');
+        //verify key was expected
+
+        // check requesting uri??
+
+        // ... some code
 
         if ($username == 'test' && $password == 'test') {
             $jsonObject = array(
                 // Registered Claims
-                "iss" => "DaGopherboy", // Claiming Issure
-                "aud" => "https://github.com/DaGopherboy/Silex-JWT-Rest-Php", // Intended Audience
+                "iss" => "ThisServiceId", // Claiming Issure
+                "aud" => "http://ec2-54-229-162-109.eu-west-1.compute.amazonaws.com", // Intended Audience (requested uri)
                 "iat" => time(), // Issued At Time
                 "nbf" => time(), // Not Before Time
                 "exp" => time()+60*60*24, // Expiration Time (24 hours)
@@ -25,7 +32,7 @@ class AuthenticateProvider
                 "payload" => [
                     "firstName" => "Test",
                     "lastName" => "Tester",
-                    "title" => "Head of Quality Assurance",
+                    "title" => "Mr",
                     "admin" => true
                 ]
             );
