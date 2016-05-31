@@ -22,5 +22,10 @@ tested on Windows, Linux, and OS X terminals.
   $ phpunit
 ```
 
+###TODO
+
+ - refactor phpseclib package bundle to more abstract use package (and fix bugs) *just RSA and Math for now*
+ - alter JWT package to implement phpseclib
+
 
 
