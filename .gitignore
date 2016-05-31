@@ -10,3 +10,6 @@ composer.lock
 # Node stuff (Grunt, etc)
 npm-debug.log
 node_modules/
+
+#certs
+#certs/

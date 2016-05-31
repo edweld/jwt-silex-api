@@ -37,16 +37,21 @@ class AuthenticateProvider
                 ]
             );
 
-            // Get the secret key for signing the JWT from an environment variable
-            $someSuperSecretKey = getenv('SomeSuperSecretKey');
+            /** 
+             * Simple encryption, comment out below
+               $key = '123456789qwerty'; 
+               $jsonWebToken = JWT::encode($jsonObject, $key );
+             */
 
-            // If no environment variable is set, use this one.
-            if(empty($someSuperSecretKey)) {
-                $someSuperSecretKey = '123456789';
-            }
+	    /**
+	     * RSA encryption
+             */
+            $key = openssl_pkey_get_private('../../../../certs/id_rsa'); 
 
             // Sign the JWT with the secret key
-            $jsonWebToken = JWT::encode($jsonObject, $someSuperSecretKey );
+	    // @TODO refactor JWT to use phpseclib
+            $jsonWebToken = JWT::encode($jsonObject, $key , 'RS256');
+            openssl_free_key($key); 
 
             return $app->json([
                                'status' =>  1,
