@@ -50,7 +50,7 @@ class ApiTest extends WebTestCase
                          ['HTTP_AUTHORIZATION' => "Bearer $this->jwt"]
         );
         $response = json_decode($client->getResponse()->getContent());
-        $this->assertEquals($response->message, '{"firstName":"Test","lastName":"Tester","title":"Head of Quality Assurance","admin":true}');
+        $this->assertEquals($response->message, '{"firstName":"Test","lastName":"Tester","title":"Mr","admin":true}');
     }
 
     public function testApiWithoutJWTCheckFor401Status() {

@@ -46,7 +46,7 @@ class AuthenticateProvider
             }
 
             // Sign the JWT with the secret key
-            $jsonWebToken = JWT::encode($jsonObject, $someSuperSecretKey);
+            $jsonWebToken = JWT::encode($jsonObject, $someSuperSecretKey );
 
             return $app->json([
                                'status' =>  1,
