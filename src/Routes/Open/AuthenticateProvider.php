@@ -46,8 +46,7 @@ class AuthenticateProvider
 	    /**
 	     * RSA encryption
              */
-            $key = openssl_pkey_get_private('../../../../certs/id_rsa'); 
-
+            $key = openssl_pkey_get_private('file://'.dirname(__FILE__).'/../../../certs/private.pem'); 
             // Sign the JWT with the secret key
 	    // @TODO refactor JWT to use phpseclib
             $jsonWebToken = JWT::encode($jsonObject, $key , 'RS256');

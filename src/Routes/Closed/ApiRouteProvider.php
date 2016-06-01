@@ -25,16 +25,10 @@ class ApiRouteProvider implements ControllerProviderInterface
 
             $headerWithoutBearer = str_replace('Bearer ', '', $rawHeader);
 
-            // Get the secret key for signing the JWT from an environment variable
-            $someSuperSecretKey = getenv('SomeSuperSecretKey');
-
-            // If no environment variable is set, use this one. -- should probably barf here
-            if(empty($someSuperSecretKey)) {
-                $someSuperSecretKey = '123456789';
-            }
+            $key = openssl_pkey_get_public('file://'.dirname(__FILE__).'/../../../certs/public.pem');
 
             try {
-                $decodedJWT = JWT::decode($headerWithoutBearer, $someSuperSecretKey, ['HS256']);
+                $decodedJWT = JWT::decode($headerWithoutBearer, $key, ['RS256']);
             }  catch (Exception $e) {
                 return new Response('Unauthorized', 401);
             }
